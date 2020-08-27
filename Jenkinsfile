@@ -25,13 +25,21 @@ pipeline {
 
         // If the branch is master...
         stage('Deploy') {
-            when {
-                expression { params.BRANCH == 'master' }
+            //when {
+              //  expression { params.BRANCH == 'master' }
+            //}
+                   steps {
+                sh '''
+                    eval `ssh-agent -s` && ssh-add
+                    if ! grep "$(ssh-keyscan github.com 2>/dev/null)" ~/.ssh/known_hosts > /dev/null; then ssh-keyscan github.com >> ~/.ssh/known_hosts; fi
+                    git remote set-url origin-ssh git@github.com:Masquerainsley/jenkins-workshop.git || git remote add origin-ssh git@github.com:Masquerainsley/jenkins-workshop.git
+                    git fetch --all
+                    git checkout master  
+                    git checkout heroku-deploy
+                    git merge master
+                    git push origin-ssh heroku-deploy
+                '''
             }
-            steps {
-                echo 'ToDo: Deploy the app somnewhere'
-            }
-        }
 
         stage('Smoke Tests') {
             when {
