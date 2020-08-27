@@ -10,12 +10,7 @@ You will need [Docker](https://docs.docker.com/get-docker/) and [Docker Compose]
 
 ## Preparation
 
-Fork https://github.com/WillGibson/jenkins-workshop to your GitHub account, clone your fork to your machine and create starting point...
-
-    git clone git@github.com:<your_github_username>/jenkins-workshop.git \
-    && cd jenkins-workshop \
-    && git revert HEAD --no-edit \
-    && git push --force
+Fork https://github.com/WillGibson/jenkins-workshop to your GitHub account, clone your fork. to your machine and `cd jenkins-workshop`.
 
 ## Sample App
 
