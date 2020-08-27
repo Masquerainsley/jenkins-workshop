@@ -28,7 +28,7 @@ pipeline {
             //when {
               //  expression { params.BRANCH == 'master' }
             //}
-                   steps {
+                steps {
                 sh '''
                     eval `ssh-agent -s` && ssh-add
                     if ! grep "$(ssh-keyscan github.com 2>/dev/null)" ~/.ssh/known_hosts > /dev/null; then ssh-keyscan github.com >> ~/.ssh/known_hosts; fi
@@ -40,6 +40,7 @@ pipeline {
                     git push origin-ssh heroku-deploy
                 '''
             }
+        }    
 
         stage('Smoke Tests') {
             when {
