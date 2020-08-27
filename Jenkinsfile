@@ -13,13 +13,13 @@ pipeline {
 
         stage('Build') {
             steps {
-                echo 'ToDo: Build the app'
+                sh './build.sh'
             }
         }
 
         stage('Test') {
             steps {
-                echo 'ToDo: Run the tests'
+                sh './dockertest.sh'
             }
         }
 
